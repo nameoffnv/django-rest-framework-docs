@@ -117,12 +117,15 @@ class ApiEndpoint(object):
                 else:
                     sub_fields = self.__get_serializer_fields__(field) if isinstance(field, BaseSerializer) else None
 
+                help_text = str(field.help_text) if field.help_text else None
+
                 fields.append({
                     "name": key,
                     "type": str(field.__class__.__name__),
                     "sub_fields": sub_fields,
                     "required": field.required,
-                    "to_many_relation": to_many_relation
+                    "to_many_relation": to_many_relation,
+                    "help_text": help_text
                 })
             # FIXME:
             # Show more attibutes of `field`?
